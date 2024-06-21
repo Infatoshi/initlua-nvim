@@ -1,5 +1,6 @@
---[[
+--summarize all the plugins I have in here
 
+--[[
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -190,6 +191,16 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+---- keybinds for prompting with openai
+--vim.keymap.set('n', '<leader>g,', function() -- normal mode, "\g" as entry keybind
+--  require('gpt4o').prompt { replace = false, service = 'openai' }
+--end)
+--vim.keymap.set('v', '<leader>g,', function()
+--  require('gpt4o').prompt { replace = false, service = 'openai' }
+--end)
+--vim.keymap.set('v', '<leader>g.', function()
+--  require('gpt4o').prompt { replace = true, service = 'openai' }
+--end)
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -239,7 +250,15 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
+  --  {
+  --    'Infatoshi/gpt4o.nvim',
+  --    dependencies = { 'nvim-neotest/nvim-nio' },
+  --  },
+  -- what is nio?
+  --  {
+  --    'melbaldove/llm.nvim',
+  --    dependencies = { 'nvim-neotest/nvim-nio' },
+  --  },
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following lua:
   --    require('gitsigns').setup({ ... })
@@ -755,13 +774,21 @@ require('lazy').setup({
     end,
   },
   {
-    'MeanderingProgrammer/markdown.nvim',
-    name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('render-markdown').setup {}
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
     end,
   },
+  --  {
+  --   'MeanderingProgrammer/markdown.nvim',
+  --   name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  --    config = function()
+  --      require('render-markdown').setup {}
+  --    end,
+  --  },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is
