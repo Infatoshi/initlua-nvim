@@ -118,26 +118,26 @@ require('lazy').setup(
           require('llm').create_llm_md()
         end)
 
-        -- keybinds for prompting with anthropic
+        -- keybinds for prompting with openai
         vim.keymap.set('n', '<leader>,', function()
-          require('llm').prompt { replace = false, service = 'anthropic' }
+          require('llm').prompt { replace = false, service = 'openai' }
         end)
         vim.keymap.set('v', '<leader>,', function()
-          require('llm').prompt { replace = false, service = 'anthropic' }
+          require('llm').prompt { replace = false, service = 'openai' }
         end)
         vim.keymap.set('v', '<leader>.', function()
-          require('llm').prompt { replace = true, service = 'anthropic' }
+          require('llm').prompt { replace = true, service = 'openai' }
         end)
 
-        -- keybinds for prompting with openai
+        -- keybinds for prompting with anthropic
         vim.keymap.set('n', '<leader>g,', function()
-          require('llm').prompt { replace = false, service = 'openai' }
+          require('llm').prompt { replace = false, service = 'anthropic' }
         end)
         vim.keymap.set('v', '<leader>g,', function()
-          require('llm').prompt { replace = false, service = 'openai' }
+          require('llm').prompt { replace = false, service = 'anthropic' }
         end)
         vim.keymap.set('v', '<leader>g.', function()
-          require('llm').prompt { replace = true, service = 'openai' }
+          require('llm').prompt { replace = true, service = 'anthropic' }
         end)
       end,
     },
